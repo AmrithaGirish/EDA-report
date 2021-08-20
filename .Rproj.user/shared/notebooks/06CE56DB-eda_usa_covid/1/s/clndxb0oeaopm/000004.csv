@@ -1,0 +1,1 @@
+"0","aggregate(cbind(data$Total.Cases, data$Total.Recovered), data = data, by = list(data$State), FUN = mean)"

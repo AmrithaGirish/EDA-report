@@ -1,0 +1,3 @@
+"0","datalr$call"
+"1","lm(formula = Total.Deaths ~ State, data = data)
+"

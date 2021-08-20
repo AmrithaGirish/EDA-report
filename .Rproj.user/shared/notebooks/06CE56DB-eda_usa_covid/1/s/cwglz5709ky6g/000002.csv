@@ -1,0 +1,6 @@
+"0","#correlation"
+"0","cor(data$Total.Cases, data$Total.Deaths)"
+"1","[1]"
+"1"," 0.9698435"
+"1","
+"

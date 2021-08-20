@@ -1,0 +1,749 @@
+---
+title: "USA Covid Data"
+author: "Amritha Girish"
+date: "15/08/2021"
+output: html_document
+---
+To load the data set:
+```{r}
+data=read.csv("USA Covid Data.csv")
+```
+
+To display the first 6 rows of the data set
+```{r}
+head(data)
+```
+To show the number of specified rows i.e for n=8, it will display the first 8 rows
+```{r}
+head(data, n=8)
+
+```
+To display the last Rows of your data
+```{r}
+tail(data)
+```
+To view the previously Loaded named object we use ls() command
+```{r}
+ls()
+```
+for examining the data structure of an object str() command can be used
+```{r}
+str(data)
+
+```
+to pick out item from third row and third columns:
+```{r}
+data[3,3]
+```
+to display the values of third row corresponding to columns from one to four:
+```{r}
+data[3,1:4]
+```
+for displaying all the rows by leaving out the first value and selecting just the first column:
+```{r}
+data[,1]
+```
+specifying rows and displaying values for all columns:
+```{r}
+data[c(1,3,5,7),]
+```
+specifying several rows and using -4 to display all the columns except the fourth:
+```{r}
+data[c(1,3,5,7),-4]
+```
+Since the columns are named we can use the name instead of values:
+```{r}
+data[c(1,3,5,7),'Population']
+```
+Giving a single value  in the square brackets, this will display the values in third column along with all the rows:
+```{r}
+data[3]
+```
+If you append $ and then the name of the required column you will view that column data:
+```{r}
+data$Total.Deaths
+```
+You can also use square brackets to select out parts of the item:
+```{r}
+#this will give the first four values of the column
+data$Total.Deaths[1:4]
+```
+The summary command  gives us some simple statistics about the numeric data:
+```{r}
+summary(data)
+```
+
+To see the summary of a particular column:
+```{r}
+summary(data$Total.Cases.1.mil.population)
+```
+To find the mean of a particular column:
+```{r}
+mean(data$Total.Deaths)
+```
+To find the median of a particular column:
+```{r}
+median(data$Total.Deaths)
+```
+To find variance of a  column:
+```{r}
+var(data$Total.Deaths)
+```
+To find standard deviation:
+```{r}
+sd(data$Total.Deaths)
+```
+To calculate the Standard deviation but after revoming the NA items with an additional instruction
+
+```{r}
+sd(data$Total.Deaths,na.rm=TRUE)
+```
+
+```{r}
+quantile(data$Total.Deaths)
+```
+To find 20% quantile:
+
+```{r}
+quantile(data$Total.Cases,0.2)
+```
+To find 20%,50% and 80% quantile:
+```{r}
+quantile(data$Total.Cases,c(0.2,0.5,0.8))
+```
+
+
+To Returns five number summary (minimum, lower-hinge, median, upper-hinge, maximum) for the input data.
+```{r}
+fivenum(data$Total.Cases)
+```
+
+
+The most basic command that enables the viewing of columns or row is name():
+```{r}
+names(data)
+```
+For displaying the row names:
+```{r}
+row.names(data)
+```
+For displaying the column names:
+```{r}
+colnames(data)
+```
+To display both row names and the column names at the same time we can use the command dimnames() 
+```{r}
+dimnames(data)
+```
+Omitting NA items:
+```{r}
+length(na.omit(data$Total.Recovered))
+```
+Interpreting the type of object using the class() command:
+
+```{r}
+class(data)
+```
+```{r}
+class(data$Total.Deaths)
+```
+```{r}
+class(dimnames(data))
+```
+Rotating the data frames, rows become columns and vice versa.
+```{r}
+t(data)
+```
+The cbind() and rbind() commands assemble a matrix/data frames, by columns or rows, from several other object
+
+```{r}
+head(rbind(data))
+
+```
+```{r}
+head(cbind(data))
+```
+
+Selecting and displaying parts of contingency table:
+```{r}
+data.tab=with(data,table(Total.Cases,Active.Cases))
+data.tab
+```
+Now to display only 3 rows of the contingency table:
+```{r}
+data.tab[1:3,]
+```
+Examine the table object using str() command:
+
+```{r}
+str(data.tab)
+```
+To determine the number of items in an object use length() command:
+```{r}
+length(data)
+```
+The max() and min() commands display the largest and smallest values in a numeric object.
+```{r}
+max(data$Total.Cases)
+```
+```{r}
+row.names(data)[which(data$Total.Cases==3983692)]
+#California has the highest reported covid cases
+
+```
+
+```{r}
+min(data$Total.Cases)
+```
+```{r}
+row.names(data)[which(data$Total.Cases==25038)]
+#Vermont has the lowest reported covid cases
+
+```
+```{r}
+max(data$Total.Deaths)
+
+```
+```{r}
+row.names(data)[which(data$Total.Deaths==64543)]
+#california has highest deaths reported.
+```
+```{r}
+min(data$Total.Deaths)
+```
+```{r}
+row.names(data)[which(data$Total.Deaths==260)]
+#Vermont has the lowest reported deaths.
+```
+
+We can sort the values in ascending order using command sort():
+```{r}
+head(sort(data$Total.Recovered))
+```
+Converting an object into a table:
+```{r}
+d.tab=as.table(as.matrix(data))
+d.tab
+```
+Testing for table object:
+```{r}
+is.table(data)
+```
+
+```{r}
+is.table(d.tab)
+```
+Cumulative Statistics:
+```{r}
+head(cumsum(data$Total.Cases))
+```
+```{r}
+head(cummax(data$Total.Deaths))
+```
+```{r}
+head(cummin(data$Total.Deaths))
+```
+```{r}
+head(cumprod(data$Total.Deaths))
+```
+Testing whether the data extracted is data frame or not:
+```{r}
+is.data.frame(data)
+```
+The if command is used in logical testing of some conditions and can be paired with else to provide an alternative:
+```{r}
+if(class(data) == 'data.frame') TRUE else FALSE
+```
+```{r}
+if(class(d.tab) == 'data.frame') TRUE else FALSE
+```
+```{r}
+if(class(data.tab) == 'table') TRUE else FALSE
+```
+We can use seq_along() command to create a simple index:
+```{r}
+seq_along(data)
+```
+
+Looking at the distribution of the data:
+
+stem and leaf plot: FRequency is represented in right and range of numeric categories on left.
+```{r}
+stem(data$Total.Deaths)
+```
+Histograms can be created using graphical command hist():
+```{r}
+hist(data$Total.Deaths)
+```
+```{r}
+hist(data$Total.Deaths,col='purple3',main=NULL,xlab='total deaths')
+```
+```{r}
+hist(data$Total.Cases,col='yellow3')
+```
+```{r}
+hist(data$Population)
+```
+Density function:
+Instead of using frequency=FALSE in the hist() command we can directly use density() command.
+```{r}
+density(data$Total.Cases)
+```
+Using density function to Draw a graph:
+```{r}
+plot(density(data$Total.Cases))
+```
+Adding density lines to the Existing graphs:
+```{r}
+hist(data$Total.Cases, freq = F)
+lines(density(data$Total.Cases), lty = 2)
+lines(density(data$Total.Cases, k = 'rectangular'))
+```
+Commands you can use in relation to the normal distribution:
+```{r}
+#to generate n random numbers from the normal distribution with mean of 0 and standard deviation of 1.
+
+head(rnorm(data$Total.Cases, mean = 0, sd = 1))
+```
+```{r}
+# for Returning the probability for the quantile q.
+head(pnorm(data$Total.Cases, mean = 0, sd = 1))
+```
+By using rnorm() we can create ideal normal distribution using the mean and standard deviation of the data.
+```{r}
+data.norm=rnorm(1000,mean(data$Total.Cases,sd(data$Total.Cases)))
+hist(data.norm, freq = FALSE)
+lines(density(data.norm))
+
+```
+Quantile-Quantile Plot: 
+It produces a series of points that appers in a straight line for normal distribution. 
+```{r}
+qqnorm(data$Total.Cases)# for non-normal distribution
+
+```
+```{r}
+qqnorm(data.norm)# for normal distribution
+```
+```{r}
+data.norm2=rnorm(1000,mean(data$Total.Deaths,sd(data$Total.Deaths)))
+qqnorm(data.norm2)
+```
+```{r}
+qqnorm(data.norm, main = 'QQ plot of data$total.cases', xlab = 'Theoretical', 
+ylab = 'Quantiles for data$total.cases')
+qqline(data.norm, lwd = 2, lty = 2)
+```
+It is possible to plot one distribution against another as a quantile-quantile plot using the qqplot() command.
+```{r}
+qqplot(data$Total.Cases, data$Total.Deaths)
+
+```
+```{r}
+qqplot(data.norm, data.norm2)
+```
+Drawing a straight line on the qqplot() can be done using the abline() command. This command uses the properties of a straight line (that is, y = a + bx) to produce a line on an existing plot. The general form of the command is: abline(a = intercept, b = slope).
+```{r}
+qqp = qqplot(data$Total.Cases, data$Total.Deaths)
+abline(lm(qqp$y ~ qqp$x))
+```
+```{r}
+#for normalized data
+qqp = qqplot(data.norm, data.norm2)
+abline(lm(qqp$y ~ qqp$x))
+```
+The basic method of applying a t-test is to compare two vectors of numeric data
+
+```{r}
+t.test(data$Total.Cases, data$Total.Deaths)
+```
+Two-sample t-Test with unequal variance:
+```{r}
+t.test(data$Total.Cases,data$Total.Deaths)
+```
+Two-sample t-Test with Equal variances:
+This can override the default and use the classic t-test by adding the var.equal = TRUE instruction, which forces the command to assume that the variance of the two samples is equal.
+```{r}
+t.test(data$Total.Cases, data$Total.Deaths, var.equal = TRUE)
+```
+One sample t-Testing:
+In this version you supply the name of a single vector and the mean to compare it to (this defaults to 0):
+```{r}
+t.test(data$Total.Cases, mu = 5)
+```
+Using Directional Hypotheses:
+In this the direction of the hypotheses can be specified.
+```{r}
+t.test(data$Total.Cases, mu = 5, alternative = 'greater')
+
+```
+Two-Sample U-Test:
+```{r}
+wilcox.test(data$Total.Cases, data$Total.Deaths)
+```
+One-Sample U-Test:
+```{r}
+wilcox.test(data$Total.Cases,exact=FALSE)
+```
+Correlation and Covariance:
+The cor() command determines correlation and cov()command determines covariance.
+```{r}
+#correlation
+cor(data$Total.Cases, data$Total.Deaths)
+
+```
+```{r}
+#Determines covariance between x and y . If x is a matrix or data frame, y can be omitted.
+x=cov(data$Total.Cases, data$Total.Deaths)
+x
+
+```
+The cov2cor() command is used to determine the correlation from a matrix of covariance in the following example:
+```{r}
+v = as.matrix(x)
+cov2cor(v)
+```
+Significance Testing in Correlation Tests:
+```{r}
+cor.test(data$Total.Cases, data$Total.Deaths)
+```
+Chi-squared tests of association can be carried out using the chisq.test() command.
+```{r}
+chisq.test(data$Total.Cases)
+
+```
+BoxPlot’s:
+```{r}
+boxplot(data$Total.Cases)
+```
+```{r}
+boxplot(data$Total.Deaths)
+```
+```{r}
+boxplot(data$Total.Recovered)
+
+```
+
+Boxplot for multiple items:
+```{r}
+boxplot(data$Total.Cases, data$Total.Deaths)
+```
+```{r}
+boxplot(data$Total.Cases~data$Total.Deaths , data = data)
+```
+Customising Boxplots:
+```{r}
+boxplot(data$Total.Cases,data$Active.Cases,names=c('Total cases','Active cases'))
+title(xlab="Variable",y="Value")
+```
+Horizontal Boxplots:
+```{r}
+boxplot(data$Total.Cases, horizontal = T)
+title(xlab = 'Total caes')
+```
+```{r}
+boxplot(data$Total.Deaths, horizontal = T)
+title(xlab = 'Total deaths')
+```
+```{r}
+boxplot(data$Total.Recovered, horizontal = T)
+title(xlab = 'Total Recovered')
+```
+scatter plot’s:
+```{r}
+library(dplyr)
+```
+```{r}
+plot(data$Total.Cases,data$Active.Cases)
+```
+```{r}
+plot(data$Total.Recovered,data$Active.Cases)
+
+```
+Pairs plots(multiple correlation plots)
+```{r}
+plot(data)
+```
+```{r}
+a=head(data)
+plot(a)
+```
+ Desired columns can be selected for ploating:
+```{r}
+ pairs(~ Total.Cases + Active.Cases + Total.Recovered, data =data)
+```
+Line Charts:
+```{r}
+ with(data[order(data$Total.Cases),], plot(sort(Total.Cases), Active.Cases, type = 'l'))
+```
+```{r}
+plot(data$Total.Cases, type = 'l' )
+```
+```{r}
+plot(data$Total.Cases, type = 'b')
+```
+Pie chartS:
+```{r}
+pie(data$Total.Cases, labels = 'Total cases')
+```
+```{r}
+pie(data$Total.Deaths, labels = 'Total deaths')
+```
+Cleveland Dot Charts:
+```{r}
+dotchart(data$Total.Cases)
+```
+```{r}
+dotchart(data$Total.Deaths)
+```
+```{r}
+dotchart(data$Active.Cases)
+```
+```{r}
+dotchart(data$Total.Recovered)
+```
+```{r}
+data.mat=head(as.matrix(data$Total.Deaths))
+dotchart(head(data$Total.Deaths))
+```
+Use the t() command to transpose the matrix and produce your dot plot:
+```{r}
+dotchart(t(data.mat))
+```
+Bar charts:
+The bar chart is suitable for showing data that fall into discrete categories.
+```{r}
+barplot(data$Total.Cases)
+```
+```{r}
+barplot(data$Total.Cases)
+title(xlab = 'states', ylab = 'total cases')
+box()
+```
+```{r}
+barplot(data$Total.Cases, names = row.names(data), ylab = 'Count' ,
+col = 'tan')
+```
+Multiple Category Bar Charts:
+```{r}
+#Stacked Bar Charts
+data.na=na.omit(data)
+barplot(as.matrix(data.na))
+```
+Horizontal Bars:
+```{r}
+barplot(data.mat, beside = TRUE, horiz = TRUE)
+```
+The analysis of variance using the aov() command
+```{r}
+temp.aov = na.omit(aov(data$Total.Cases ~ data$Total.Deaths, data = data))
+temp.aov
+```
+To see the classic ANOVA table of results, use the summary() command:
+```{r}
+summary(temp.aov)
+```
+Two-Way ANOVA:
+In a basic one-way ANOVA you have one response variable and one predictor variable, but you may come across a situation in which you have more than one predictor variable, in such cases use two-way ANOVA.
+```{r}
+data.aov = aov(Total.Cases ~ Total.Deaths + Population, data = data)
+summary(data.aov)
+```
+creating new testCol/testRow for addition as a new column/row to the df object (using rep() command):
+```{r}
+testCol = c(rep(data$Total.Cases - data$Total.Deaths, length(data)))
+head(testCol)
+```
+```{r}
+testRow = c('Albama1', 2100, 3100, 263, 2888, 18,66, 334, 768, 3000)
+testRow
+```
+Adding Rows or Columns:
+```{r}
+test = data.frame(data, testCol)
+head(test)
+```
+```{r}
+test = data
+test['testRow',] = testRow
+tail(test)
+```
+```{r}
+test = data
+test["Test",] = NA
+tail(test)
+```
+Column Indexes:
+```{r}
+col(data, as.factor = F)
+```
+Extracting two columns from data:
+```{r}
+x = data[ , 9:10]
+head(x)
+```
+Use the apply() command to apply a function over all the rows or columns of a data frame (or matrix):
+```{r}
+#similar to colMean()
+apply(data[ , 9:10], 2, mean)
+```
+```{r}
+apply(data[ , 5:10], 2, mean)
+```
+```{r}
+apply(data[ , 9:10], 2, median)
+```
+```{r}
+apply(data[ , 9:10], 2, var)
+```
+Using tapply() to Summarize Using a Grouping Variable:
+```{r}
+tapply(data$Total.Cases, data$State, FUN = mean)
+
+```
+```{r}
+tapply(data$Total.Deaths, data$State, FUN = mean)
+```
+```{r}
+tapply(data$Total.Recovered, data$State, FUN = mean)
+```
+```{r}
+tapply(data$Active.Cases, data$State, FUN = mean)
+```
+```{r}
+tapply(data$Population, data$State, FUN = mean)
+```
+```{r}
+tapply(data$Total.Tests, data$State, FUN = mean)
+```
+The aggregate() command enables you to compute summary statistics for subsets of a data frame or matrix.
+```{r}
+aggregate(data[ , 9:10], by = list(data$State), FUN = mean)
+```
+```{r}
+aggregate(data[ , 2:3], by = list(data$State), FUN = mean)
+```
+```{r}
+aggregate(data[ , 3:4], by = list(data$State), FUN = mean)
+```
+```{r}
+aggregate(data[ , 3:6], by = list(data$State), FUN = mean)
+```
+Using cbind():
+```{r}
+aggregate(cbind(data$Total.Cases, data$Total.Recovered), data = data, by = list(data$State), FUN = mean)
+```
+```{r}
+aggregate(data$Total.Cases ~ data$State* data$Total.Recovered, data = data, FUN = mean)
+```
+```{r}
+aggregate(data$Total.Deaths ~ data$Total.Cases, data = data, FUN = mean)
+```
+objects returns a vector of character strings giving the names of the objects in the specified environment:
+```{r}
+objects(data)
+```
+ls() is similar to object():
+```{r}
+ls(data)
+```
+Simple lineaR RegreSSion:
+```{r}
+datalr = lm(Total.Deaths ~ State, data = data)
+datalr
+
+```
+```{r}
+cor.test(~ data$Total.Deaths + data$Total.Cases, data = data)
+```
+Linear Model Results Objects: coefficients can be extracted using the coef() command.
+```{r}
+coef(datalr)
+```
+Fitted Values
+```{r}
+head(fitted(datalr))
+```
+Formula
+```{r}
+formula(datalr)
+```
+```{r}
+datalr$call
+```
+```{r}
+formula(data)
+```
+Using the segments() Command for Error Bars:
+```{r}
+data.m = apply(data[,9:10], 2, mean)
+data.m
+```
+```{r}
+data.sum = apply(data[,9:10], 2, sum)
+data.sum
+```
+```{r}
+data.sd = apply(data[ , 9:10], 2, sd)
+data.sd
+```
+```{r}
+data.1 = data.sum/data.m
+data.1
+```
+```{r}
+data.se = data.sd / sqrt(data.1)
+data.se
+```
+```{r}
+data.m + data.se
+```
+```{r}
+max(data.m + data.se)
+```
+```{r}
+data.max = round(max(data.m + data.se) + 0.5, 0)
+data.max
+```
+
+```{r}
+bplt = barplot(data.m, ylim = c(0, data.max))
+```
+Logarithmic Regression:
+```{r}
+ plot(head(Total.Cases) ~ head(Total.Recovered), data = data)
+
+```
+Polynomial Regression:
+```{r}
+ plot(Total.Cases ~ Total.Recovered, data = data)
+```
+```{r}
+data.lm = lm( Total.Cases ~ Total.Recovered + I(Total.Recovered^2), data = data)
+summary(data.lm)
+```
+Diagnostic Plots:
+```{r}
+plot(data.lm)
+```
+Creating Mathematical Expressions:
+```{r}
+plot(1:10, 1:10, type = 'n')
+opt = par(cex = 1.5)
+text(1, 1, expression(hat(x)))
+text(2, 2, expression(alpha==x))
+text(3, 3, expression(beta==y))
+text(4, 4, expression(frac(x, y)))
+text(5, 5, expression(sum(x)))
+text(6, 6, expression(sum(x^2)))
+text(7, 7, expression(bar(x) == sum(frac(x[i], n), i==1, n)))
+text(8, 8, expression(sqrt(x)))
+text(9, 9, expression(sqrt(x, 3)))
+
+```
+
+
+
+
+
+

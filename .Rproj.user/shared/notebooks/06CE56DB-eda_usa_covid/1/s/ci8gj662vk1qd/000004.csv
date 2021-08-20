@@ -1,0 +1,4 @@
+"0","#Stacked Bar Charts"
+"0","data.na=na.omit(data)"
+"0","barplot(as.matrix(data.na))"
+"2","NAs introduced by coercion"

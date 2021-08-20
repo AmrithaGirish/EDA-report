@@ -1,0 +1,27 @@
+{
+    "id": "1BC392B9",
+    "path": "~/EDA_USA/eda_usa_covid.Rmd",
+    "project_path": "eda_usa_covid.Rmd",
+    "type": "r_markdown",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1629287670974.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "tempName": "Untitled1",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "6,21",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1629465108,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1629465108099,
+    "read_only": false,
+    "read_only_alternatives": []
+}

@@ -1,0 +1,7 @@
+"0","#Determines covariance between x and y . If x is a matrix or data frame, y can be omitted."
+"0","x=cov(data$Total.Cases, data$Total.Deaths)"
+"0","x"
+"1","[1]"
+"1"," 11045062615"
+"1","
+"

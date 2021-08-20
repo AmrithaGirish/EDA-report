@@ -1,0 +1,2 @@
+"0","data.norm=rnorm(1000,mean(data$Total.Cases,sd(data$Total.Cases)))"
+"0","hist(data.norm, freq = FALSE)"

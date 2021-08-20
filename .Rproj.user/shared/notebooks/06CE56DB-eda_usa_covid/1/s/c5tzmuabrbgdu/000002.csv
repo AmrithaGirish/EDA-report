@@ -1,0 +1,7 @@
+"0","formula(data)"
+"1","State ~ Total.Cases + Total.Deaths + Total.Recovered + Active.Cases + 
+"
+"1","    Total.Cases.1.mil.population + Death.1.mil.population + Total.Tests + 
+"
+"1","    Tests.1.mil.population + Population
+"

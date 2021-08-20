@@ -1,0 +1,2 @@
+"0","data.norm2=rnorm(1000,mean(data$Total.Deaths,sd(data$Total.Deaths)))"
+"0","qqnorm(data.norm2)"

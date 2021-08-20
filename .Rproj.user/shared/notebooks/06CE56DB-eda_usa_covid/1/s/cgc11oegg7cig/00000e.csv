@@ -1,0 +1,2 @@
+"0","qqnorm(data.norm, main = 'QQ plot of data$total.cases', xlab = 'Theoretical', "
+"0","ylab = 'Quantiles for data$total.cases')"

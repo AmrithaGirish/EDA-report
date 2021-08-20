@@ -1,0 +1,1 @@
+"0"," with(data[order(data$Total.Cases),], plot(sort(Total.Cases), Active.Cases, type = 'l'))"

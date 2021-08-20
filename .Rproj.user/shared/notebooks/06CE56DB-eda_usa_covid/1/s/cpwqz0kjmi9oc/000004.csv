@@ -1,0 +1,1 @@
+"0","aggregate(data$Total.Deaths ~ data$Total.Cases, data = data, FUN = mean)"

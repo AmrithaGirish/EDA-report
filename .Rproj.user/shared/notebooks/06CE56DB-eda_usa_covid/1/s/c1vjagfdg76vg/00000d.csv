@@ -1,0 +1,2 @@
+"0"," plot(head(Total.Cases) ~ head(Total.Recovered), data = data)"
+"0",""

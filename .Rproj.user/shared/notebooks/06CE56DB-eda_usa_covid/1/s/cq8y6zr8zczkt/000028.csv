@@ -1,0 +1,1 @@
+"0","text(7, 7, expression(bar(x) == sum(frac(x[i], n), i==1, n)))"

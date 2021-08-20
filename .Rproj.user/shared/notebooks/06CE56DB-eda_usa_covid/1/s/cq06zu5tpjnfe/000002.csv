@@ -1,0 +1,5 @@
+"0","if(class(data) == 'data.frame') TRUE else FALSE"
+"1","[1]"
+"1"," TRUE"
+"1","
+"

@@ -1,0 +1,2 @@
+"0","barplot(data$Total.Cases, names = row.names(data), ylab = 'Count' ,"
+"0","col = 'tan')"

@@ -1,0 +1,2 @@
+"0","data.mat=head(as.matrix(data$Total.Deaths))"
+"0","dotchart(head(data$Total.Deaths))"

@@ -1,0 +1,5 @@
+"0","if(class(d.tab) == 'data.frame') TRUE else FALSE"
+"1","[1]"
+"1"," FALSE"
+"1","
+"
